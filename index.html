@@ -1,20 +1,65 @@
 <!DOCTYPE html>
 <html>
     <style>
-        .fl {
-            font-family:Arial;
-            font-size: 150%;
+        #Mybtn {
+            width: 100px;
+            font-size: 18px;
+            padding: 10px;
+            border: none;
+            background: #000;
+            color: #fff;
+            cursor: pointer;
         }
-        .sl {
-            font-family: sans-serif;
-            font-size: 200%;
+        #Mybtn:hover {
+            color: #000;
+            background: #fff;
+        }
+        #Mutebtn {
+            width: 100px;
+            font-size: 18px;
+            padding: 10px;
+            border: none;
+            background: #000;
+            color: #fff;
+            cursor: pointer;
+        }
+        #Mutebtn:hover {
+            color:#000;
+            background: #fff;
         }
     </style>
-    <title>My HTML Website</title>
+    <title>Custom Video Control Bar</title>
     <body>
-        <center>
-            <img width="400" src="logo.png" alt="Alternative text">
-        </center>
-        <a href="how/second.html">Visit W3Schools</a>
+        <video id="myvideo" width="500px">
+            <source src="thedoor.mp4">
+        </video>
+        <div>
+            <button id="Mybtn" onclick="playPause()">Play</button>
+            <button id="Mutebtn" onclick="mute()">Mute</button>
+        </div>
+    <script>
+        var vid = document.getElementById("myvideo")
+        var btn = document.getElementById("Mybtn")
+        var mutebtn = document.getElementById("Mutebtn")
+
+        function playPause() {
+            if (vid.paused) {
+                vid.play();
+                btn.innerHTML = "Pause";
+            } else {
+                vid.pause();
+                btn.innerHTML = "Play";
+            }
+        }
+        function mute() {
+            if(vid.muted){
+                vid.muted = false;
+                mutebtn.innerHTML = "Mute"
+            } else {
+                vid.muted = "true";
+                mutebtn.innerHTML = "Unmute"
+            }
+        }
+    </script>
     </body>
 </html>
