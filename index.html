@@ -27,20 +27,46 @@
             color:#000;
             background: #fff;
         }
+        input[type="range"]{
+            -webkit-appearance: none !important;
+            background: #000;
+            border: #666 1px solid;
+            height: 4px;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none !important;
+            background: #FFF;
+            height: 15px;
+            width: 15px;
+            border-radius:100%;
+            cursor:pointer;
+        }
+        div#video_controls_bar{
+            background:#968f78;
+            padding:10px;
+            color:#ccc;
+            font-family:arial;
+            width: 500px;
+        }
     </style>
     <title>Custom Video Control Bar</title>
     <body>
         <video id="myvideo" width="500px">
             <source src="thedoor.mp4">
         </video>
-        <div>
+        <div id="video_controls_bar">
             <button id="Mybtn" onclick="playPause()">Play</button>
             <button id="Mutebtn" onclick="mute()">Mute</button>
+            <input id="seekslider" change="vidseek" type="range" min="0" max="100" value="1" step="1" style="width:180px">
+            <span id="curtimetext"></span> / <span id="durtimetext"></span>
         </div>
     <script>
         var vid = document.getElementById("myvideo")
         var btn = document.getElementById("Mybtn")
         var mutebtn = document.getElementById("Mutebtn")
+        var seekslider = document.getElementById("seekslider")
+        var curtimetext = document.getElementById("curtimetext")
+        var durtimetext = document.getElementById("durtimetext")
 
         function playPause() {
             if (vid.paused) {
@@ -59,6 +85,10 @@
                 vid.muted = "true";
                 mutebtn.innerHTML = "Unmute"
             }
+        }
+        function vidseek(){
+            var seekto = vid.duration * (seekslider.value / 100);
+            vid.currentTime = seekto;
         }
     </script>
     </body>
