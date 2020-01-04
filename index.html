@@ -57,7 +57,7 @@
         <div id="video_controls_bar">
             <button id="Mybtn" onclick="playPause()">Play</button>
             <button id="Mutebtn" onclick="mute()">Mute</button>
-            <input id="seekslider" change="vidseek" type="range" min="0" max="100" value="1" step="1" style="width:180px">
+            <input id="seekslider" onchange="vidseek" type="range" min="0" max="100" value="1" step="1" style="width:180px">
             <span id="curtimetext"></span> / <span id="durtimetext"></span>
         </div>
     <script>
