@@ -51,7 +51,7 @@
     </style>
     <title>Custom Video Control Bar</title>
     <body>
-        <video id="myvideo" width="500px">
+        <video ontimeupdate="seektimeupdate()" id="myvideo" width="500px">
             <source src="thedoor.mp4">
         </video>
         <div id="video_controls_bar">
@@ -89,6 +89,20 @@
         function vidseek(){
             var seekto = vid.duration * (seekslider.value / 100);
             vid.currentTime = seekto;
+        }
+        function seektimeupdate(){
+            var nt = vid.currentTime * (100 / vid.duration);
+            seeklider.value = nt;
+            var curmins = Math.floor(vid.currentTime / 60);
+            var cursecs = Math.floor(vid.currentTime - curmins * 60);
+            var durmins = Math.floor(vid.duration / 60);
+            var dursecs = Math.floor(vid.duration - durmins * 60);
+            if(cursecs < 10){ cursecs = "0"+cursecs; }
+            if(dursecs < 10){ dursecs = "0"+dursecs; }
+            if(curmins < 10){ curmins = "0"+curmins; }
+            if(durmins < 10){ durmins = "0"+durmins; }
+            curtimetext.innerHTML = curmins+":"+cursecs;
+            durtimetext.innerHTML = durmins+":"+dursecs;
         }
     </script>
     </body>
